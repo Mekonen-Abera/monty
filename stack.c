@@ -1,73 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
 /**
- * create_stack_node - create a stack node
- * @stack: A pointer to top and bottom stack
- * Done by: Mekonen Abera & Gebrekidan Alemayehu
- * Return: 0 on success
- *       : -1 on failure
+ * free_stack - freedoubly linked list
+ * @head: first node of stack
+ * Return: none
  */
-int create_stack_node(stack_t **stack)
+
+void free_stack(stack_t *head)
 {
-	stack_t *p;
+	stack_t *temp;
 
-	p = malloc(sizeof(stack_t));
-	if (p == NULL)
+	temp = head;
+	while (head)
 	{
-		fprintf(stderr, "Failed to allocate memory\n");
-		return -1;
-	}
-
-	p->n = STACK;
-	p->prev = NULL;
-	p->next = NULL;
-
-	*stack = p;
-
-	return 0;
-}
-
-/**
- * free_stack - Frees a stack_t stack
- * @stack: A pointer to top and bottom stack
- * Done by: Mekonen Abera & Gebrekidan Alemayehu
- * Return: Nothing
- */
-void free_stack(stack_t **stack)
-{
-	stack_t *temp_node;
-
-	while (*stack)
-	{
-		temp_node = (*stack)->next;
-		free(*stack);
-		*stack = temp_node;
+		temp = head->next;
+		free(head);
+		head = temp;
 	}
 }
 
 /**
- * check_opcode - checks if STACK or QUEUE.
- * @stack: A pointer to top and bottom stack
- * Done by: Mekonen Abera & Gebrekidan Alemayehu
- * Return: The value of Stack or Queue.
- */
-int check_opcode(stack_t *stack)
-{
-	if (stack == NULL)
-	{
-		fprintf(stderr, "Invalid stack pointer\n");
-		return -1;
-	}
+ * f_stack - free stack
+ * @head: first node(unused)
+ * @counter: line counter (unused)
+ *
+ * Return: none
+*/
 
-	if (stack->n == STACK)
-		return STACK;
-	else if (stack->n == QUEUE)
-		return QUEUE;
-	else
-	{
-		fprintf(stderr, "Invalid stack type\n");
-		return -1;
-	}
+void f_stack(stack_t **head, unsigned int counter)
+{
+	(void)head;
+	(void)counter;
+
+	bus.lifi = 0;
 }
+
