@@ -1,35 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "monty.h"
 
 /**
- * create_node_stack - sets the format of the data to a stack (LIFO)
- * @stack: A pointer to top and the bottom of the stack
+ * create_stack_node - create a stack node
+ * @stack: A pointer to top and bottom stack
  * Done by: Mekonen Abera & Gebrekidan Alemayehu
- * Return: EXIT SUCCESS
+ * Return: 0 on success
+ *       : -1 on failure
  */
-int create_node_stack(stack_t **stack)
+int create_stack_node(stack_t **stack)
 {
 	stack_t *p;
 
 	p = malloc(sizeof(stack_t));
 	if (p == NULL)
-		stderr_malloc();
+	{
+		fprintf(stderr, "Failed to allocate memory\n");
+		return -1;
+	}
+
 	p->n = STACK;
 	p->prev = NULL;
 	p->next = NULL;
 
 	*stack = p;
 
-	return (EXIT_SUCCESS);
+	return 0;
 }
+
 /**
- * free_node_stack - It frees a stack.
+ * free_stack - Frees a stack_t stack
  * @stack: A pointer to top and bottom stack
  * Done by: Mekonen Abera & Gebrekidan Alemayehu
  * Return: Nothing
  */
-void free_node_stack(stack_t **stack)
+void free_stack(stack_t **stack)
 {
-	stack_t *temp_node = *stack;
+	stack_t *temp_node;
 
 	while (*stack)
 	{
@@ -38,19 +46,28 @@ void free_node_stack(stack_t **stack)
 		*stack = temp_node;
 	}
 }
+
 /**
- * check_opcode - checks if stack or queue
- * @stack: A pointer to top and bottom of the stack
+ * check_opcode - checks if STACK or QUEUE.
+ * @stack: A pointer to top and bottom stack
  * Done by: Mekonen Abera & Gebrekidan Alemayehu
- * Return: The value of Stack or Queue
+ * Return: The value of Stack or Queue.
  */
 int check_opcode(stack_t *stack)
 {
-	int ret_val = 2;
+	if (stack == NULL)
+	{
+		fprintf(stderr, "Invalid stack pointer\n");
+		return -1;
+	}
 
 	if (stack->n == STACK)
-		return (STACK);
+		return STACK;
 	else if (stack->n == QUEUE)
-		return (QUEUE);
-	return (ret_val);
+		return QUEUE;
+	else
+	{
+		fprintf(stderr, "Invalid stack type\n");
+		return -1;
+	}
 }
