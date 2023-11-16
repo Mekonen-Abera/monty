@@ -1,62 +1,70 @@
 #include "monty.h"
 
 /**
- * f_push - pushes an element to the stack
+ * push - pushes an element to the stack
  * @stack: head of linkedlist
  * @line_number: line number of the command
  * Done by: Mekonen Abera & Gebrekidan Alemayehu
  * Return: Nothing
  */
-void f_push(stack_t **head, unsigned int counter)
+void push(stack_t **stack, unsigned int line_number)
 {
-	int n, j = 0, flag = 0;
 
-	if (bus.arg)
+	int n = 0;
+
+	if (globalvar.token2 == NULL)
 	{
-		if (bus.arg[0] == '-')
-			j++;
-		for (; bus.arg[j] != '\0'; j++)
-		{
-			if (bus.arg[j] > 57 || bus.arg[j] < 48)
-				flag = 1; }
-		if (flag == 1)
-		{ fprintf(stderr, "L%d: usage: push integer\n", counter);
-			fclose(bus.file);
-			free(bus.content);
-			free_stack(*head);
-			exit(EXIT_FAILURE); }}
+		free_dlistint(*stack);
+		stderr_int(line_number);
+	}
+	if (!_isdigit() || stack == NULL)
+	{
+		free_dlistint(*stack);
+		stderr_int(line_number);
+	}
+	n = atoi(globalvar.token2);
+	if (*stack  == NULL)
+	{
+		create_node_stackfirst(stack, n);
+	}
 	else
-	{ fprintf(stderr, "L%d: usage: push integer\n", counter);
-		fclose(bus.file);
-		free(bus.content);
-		free_stack(*head);
-		exit(EXIT_FAILURE); }
-	n = atoi(bus.arg);
-	if (bus.lifi == 0)
-		addnode(head, n);
-	else
-		addqueue(head, n);
+	{
+		create_node_stackend(stack, n);
+	}
 }
 
 /**
- * f_pall - Prints all the value in stack
+ * pall - Prints all the value in stack
  * @stack: head of linkedlist
  * @line_number: line number of the instruction
  * Done by: Mekonen and Gebrekidan
  * Return: Nothing
  */
-void f_pall(stack_t **head, unsigned int counter)
+void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h;
-	(void)counter;
 
-	h = *head;
-	if (h == NULL)
-		return;
-	while (h)
+	stack_t *temp = NULL;
+
+
+	if (*stack == NULL)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		return;
 	}
+	if (*stack == NULL && line_number != 1)
+	{
+		free_dlistint(*stack);
+		free_globalvars();
+		exit(EXIT_SUCCESS);
+	}
+	temp = *stack;
+	while (temp->next != NULL)
+		temp = temp->next;
+	while (temp->prev != NULL)
+	{
+		printf("%d", temp->n);
+		temp = temp->prev;
+		printf("\n");
+	}
+	printf("%d\n", temp->n);
 }
 
