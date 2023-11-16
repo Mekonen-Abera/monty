@@ -25,22 +25,22 @@
 
 | Task | File |
 | ---- | ---- |
-| 0. push, pall | [](./) |
-| 1. pint | [](./) |
-| 2. pop | [](./) |
-| 3. swap | [](./) |
-| 4. add | [](./) |
-| 5. nop | [](./) |
-| 6. sub | [](./) |
-| 7. div | [](./) |
-| 8. mul | [](./) |
-| 9. mod | [](./) |
-| 10. comments | [](./) |
-| 11. pchar | [](./) |
-| 12. pstr | [](./) |
-| 13. rotl | [](./) |
-| 14. rotr | [](./) |
-| 15. stack, queue | [](./) |
+| 0. push, pall | [push_pall.c](./) |
+| 1. pint | [pint.c](./) |
+| 2. pop | [pop.c](./) |
+| 3. swap | [swap.c](./) |
+| 4. add | [add.c](./) |
+| 5. nop | [nop.c](./) |
+| 6. sub | [sub.c](./) |
+| 7. div | [div.c](./) |
+| 8. mul | [mul.c](./) |
+| 9. mod | [mod.c](./) |
+| 10. comments | [execute.c](./) |
+| 11. pchar | [pchar.c](./) |
+| 12. pstr | [pstr.c](./) |
+| 13. rotl | [rotl.c](./) |
+| 14. rotr | [rotr.c](./) |
+| 15. stack, queue | [stack,c](./) |
 | 16. Brainf*ck | [1000-school.bf](./1000-school.bf) |
 | 17. Add two digits | [1001-add.bf](./1001-add.bf) |
 | 18. Multiplication | [1002-mul.bf](./1002-mul.bf) |
